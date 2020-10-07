@@ -1,0 +1,34 @@
+name: "Format Python Code"
+
+# see: https://help.github.com/en/actions/reference/events-that-trigger-workflows
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  autopep8:
+    name: Check code formatting with autopep8
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: autopep8
+        uses: peter-evans/autopep8@v1.2.0
+        with:
+          args: --recursive --in-place --aggressive --aggressive .
+
+      - name: Commit and push changes
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          # Required
+          commit_message: autopep8 fix
+          # Optional
+          # commit_user_name: Autopep8 Action Bot
+          # commit_user_email: florian.mueller.fouarge@gmail.com
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

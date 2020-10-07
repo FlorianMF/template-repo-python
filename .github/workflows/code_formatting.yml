@@ -1,0 +1,77 @@
+name: "Check Code Format"
+
+on:
+  # Trigger the workflow on push or pull request,
+  # but only for the main branch
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  code-black:
+    name: Check code formatting with Black
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      - name: Install Black
+        run: pip install black==19.10b0
+
+      - name: Run Black
+        # run: echo "LGTM"
+        run: black --skip-string-normalization --config=pyproject.toml --check .
+
+  python-types:
+    if: false # always skip job
+    name: Python static type checking with Pyright
+    runs-on: ubuntu-latest
+    # Timeout: https://stackoverflow.com/a/59076067/4521646
+    # The maximum number of minutes to let a job run before GitHub automatically cancels it. Default: 360
+    timeout-minutes: 15
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+
+      - name: Set up Python 3.9
+        uses: actions/setup-python@v2
+        with:
+          python-version: 3.9
+
+      # Note: This uses an internal pip API and may not always work
+      # https://github.com/actions/cache/blob/master/examples.md#multiple-oss-in-a-workflow
+      - name: Cache pip
+        uses: actions/cache@v2
+        with:
+          path: ~/.cache/pip
+          key: ${{ runner.os }}-pip-extras-${{ hashFiles('requirements/install.txt') }}-${{ hashFiles('requirements/extra.txt') }}
+          restore-keys: |
+            ${{ runner.os }}-pip-extras-
+
+      - name: Install dependencies
+        run: |
+          # python -m pip install --upgrade --user pip
+          pip install --requirement requirements/install.txt --upgrade-strategy only-if-needed --quiet
+          # pip install tox coverage
+          python --version ; pip --version ; pip list
+        shell: bash
+
+      - name: Set up node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '12'
+
+      - name: Install pyright
+        run: |
+          npm install pyright
+
+      - name: Run type checking
+        run: |
+          $(npm bin)/pyright --project .pyrightconfig.json

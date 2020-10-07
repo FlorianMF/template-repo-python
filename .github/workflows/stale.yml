@@ -1,0 +1,48 @@
+name: "Stale issues and pull requests, mark and close"
+
+on:
+  schedule:
+    # The cron format is:
+    # min (0-59) hour (0-23) monthday (1-31) month (1-12) weekday (0-6, 0=Sun)
+    # Set to run everyday at midnight.
+  - cron: "0 0 * * *"
+
+jobs:
+  stale:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/stale@v3
+      with:
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        ## Issues
+        # Comment to post when marking an issue as stale.
+        stale-issue-message: 'This issue has been automatically marked as
+                              stale because it has not had recent activity.
+                              It will be closed if no further activity occurs.
+                              Thank you for your contributions.'
+        # Label added to stale issues
+        stale-issue-label: 'no-issue-activity'
+        # Issues with these labels will never be considered stale
+        exempt-issue-labels: 'awaiting-approval,work-in-progress,pinned,security'
+
+        ## Pull requests
+        # Comment to post when marking a pull request as stale.
+        stale-pr-message: 'This pull request has been automatically marked as
+                           stale because it has not had recent activity.
+                           It will be closed if no further activity occurs.
+                           Thank you for your contributions.'
+        # Label added to stale pull requests
+        stale-pr-label: 'no-pr-activity,wontfix'
+        # Issues with these labels will never be considered stale
+        exempt-pr-labels: 'awaiting-approval,work-in-progress'
+
+        ## Both
+        # Issues/pull requests with these labels will never be considered stale
+        only-labels: 'awaiting-feedback,awaiting-answers'
+
+        # Number of days of inactivity before an issue/pull request becomes stale
+        days-before-stale: 30
+        # Number of days of inactivity before a stale issue/pull request is closed
+        days-before-close: 5
+

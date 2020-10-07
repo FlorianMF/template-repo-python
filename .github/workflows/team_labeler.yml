@@ -1,0 +1,17 @@
+name: "Label Teams"
+
+# see: https://help.github.com/en/actions/reference/events-that-trigger-workflows
+# The teams can be defined in the .github/teams.yml file
+on:
+  # Trigger the workflow on pull request,
+  # but only for the main branch
+  pull_request:
+    branches: [main]
+
+jobs:
+  team-labeler:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: JulienKode/team-labeler-action@v0.1.0
+      with:
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"

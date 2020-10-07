@@ -1,0 +1,11 @@
+{
+    "include": [
+      "REPONAME"
+    ],
+
+    "ignore": [
+      "REPONAME/__init__.py"
+    ],
+
+    "reportMissingImports": false
+  }

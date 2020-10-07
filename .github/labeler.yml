@@ -1,0 +1,44 @@
+# Took from https://github.com/marketplace/actions/labeler
+
+# These labels do not have to already exist in the list of labels in your GitHub repo.
+# They will be created automatically.
+
+# Add 'repo' label to any root file changes
+repo:
+  - ./*
+
+# # Add '@domain/core' label to any change within the 'core' package
+# @domain/core:
+#   - package/core/*
+#   - package/core/**/*
+
+# Add 'test' label to any change to the test files
+test:
+  - tests/*
+
+# Add 'REPONAME' label to any change inside the repo dir
+REPONAME:
+- any: ['REPONAME/**/*', '!REPONAME/docs/*']
+
+# Add docs label to any change to doc files
+docs:
+- docs/*
+
+# Add requirements label to any change to requirements files
+requirements:
+- requirements/*
+
+# Add examples label to any change to examples files
+examples:
+- examples/*
+
+# Add github label to any change to github files
+github:
+- .github/*
+
+# Add circle-ci label to any change to circle-ci yml files
+circle-ci:
+- .circleci/*
+
+README:
+- README.md
