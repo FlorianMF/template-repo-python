@@ -24,7 +24,7 @@ jobs:
         # before custom requirement are resolved https://github.com/ammaraskar/sphinx-action/issues/16
         pre-build-command: "apt-get update -y && apt-get install -y git && pip install -r requirements/docs.txt"
         docs-folder: "docs/"
-        repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        # repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   test-docs:
     if: false # always skip job
