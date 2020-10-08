@@ -23,11 +23,10 @@
 [![PyPI Status](https://pepy.tech/badge/PACKAGENAME)](https://pepy.tech/project/PACKAGENAME)
 [![PyPI - Downloads](https://img.shields.io/pypi/dm/PACKAGENAME)](https://pypi.org/project/PACKAGENAME)
 
-[![DockerHub](https://img.shields.io/docker/pulls/AUTHOR_NAME/PACKAGENAME.svg)](https://hub.docker.com/r/AUTHOR_NAME/PACKAGENAME)
+[![DockerHub](https://img.shields.io/docker/pulls/DOCKER_AUTHOR_NAME/DOCKER_REPONAME.svg)](https://hub.docker.com/r/DOCKER_AUTHOR_NAME/DOCKER_REPONAME)
 
 [![codecov](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME/branch/main/graph/badge.svg)](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME)
 [![Coverage](https://img.shields.io/codecov/c/github/AUTHOR_NAME/PACKAGENAME)](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME)
-
 
 [![Status](https://img.shields.io/pypi/status/PACKAGENAME)](https://pypi.org/project/template-repo-python)
 ![Docs](https://github.com/FlorianMF/template-repo-python/workflows/Docs%20Check/badge.svg)
@@ -314,7 +313,7 @@ If you want to use GitHub and CircleCi workflows for Docker you need to do the f
 * Replace `DOCKER_AUTHOR_NAME` with your name on Docker
 * Replace `DOCKER_REPONAME` with the name of your package on Docker
 
-Your should also modify the Dockerfiles in the subdirs of the [dockers](dockers) folder to create your personal Docker workflows.
+Your should also modify the `Dockerfiles` in the subdirs of the [dockers](dockers) folder to create your personal Docker workflows.
 
 ### Badges and logo
 
