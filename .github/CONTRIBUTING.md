@@ -110,6 +110,7 @@ In case you adding new dependencies, make sure that they are compatible with the
 2. Black code formatter is used using `pre-commit` hook.
 
 ### Documentation
+
 #TODO adapt the docstrings to Google Style
 We are using Sphinx with Napoleon extension.
 Moreover, we set Google style to follow with type convention.
@@ -187,7 +188,7 @@ Note: if your computer does not have multi-GPU nor TPU these tests are skipped.
 **GitHub Actions:** For convenience, you can also use your own GHActions building which will be triggered with each commit.
 This is useful if you do not test against all required dependency versions.
 
-**Docker:** Another option is utilize the [REPONAME cuda base docker image](https://hub.docker.com/repository/docker/AUTHOR_NAME/REPONAME/tags?page=1&name=cuda). You can then run:
+**Docker:** Another option is utilize the [REPONAME cuda base docker image](https://hub.docker.com/repository/docker/DOCKER_AUTHOR_NAME/DOCKER_REPONAME/tags?page=1&name=cuda). You can then run:
 
 ```bash
 python -m pytest PACKAGENAME tests examples -v --flake8
@@ -271,6 +272,8 @@ We welcome any useful contribution! For your convenience here's a recommended wo
    ```
 
 ### Bonus Workflow Tip
+
+# TODO: adapt to your package name
 
 If you don't want to remember all the commands above every time you want to push some code/setup a PACKAGENAME Dev environment on a new VM, you can set up bash aliases for some common commands. You can add these to one of your `~/.bashrc`, `~/.zshrc`, or `~/.bash_aliases` files.
 
