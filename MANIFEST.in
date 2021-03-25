@@ -41,11 +41,15 @@ recursive-include examples *.py *.md *.sh *.txt
 # exclude tests from package
 recursive-exclude tests *
 exclude tests
+recursive-exclude dockers *
+exclude dockers
+recursive-exclude scripts *
+exclude scripts
 
 # Exclude the documentation files
 recursive-exclude docs *
 exclude docs
-recursive-include docs/source/_images/logos/ *
+recursive-include docs/source/_images/logos/*
 
 # Include the Requirements
 recursive-include requirements *.txt
