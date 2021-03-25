@@ -95,7 +95,8 @@ setup(
 
     platforms='any',
     setup_requires=[],
-    install_requires=setup_tools.load_requirements(file_name='install.txt'),   # Optional
+    install_requires=setup_tools.load_requirements(
+        file_name='install.txt'),   # Optional
     extras_require=_prepare_extras(),
     python_requires='>=3.6',
 
