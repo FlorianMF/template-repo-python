@@ -11,7 +11,7 @@ on:
 
 jobs:
   check-docs:
-    # if: false # always skip job
+    if: false # always skip job
     runs-on: ubuntu-latest
 
     steps:
