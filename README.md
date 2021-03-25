@@ -86,6 +86,7 @@ This template took inspiration from several repos, including:
 
 * [Justus Schock's template repo](https://github.com/justusschock/template-repo-python)
 * [Pytorch Lightning](https://github.com/PyTorchLightning/pytorch-lightning)
+* [Pytorch Lightning Bolts](https://github.com/PyTorchLightning/pytorch-lightning-bolts)
 
 <hr style="border:2px solid green"> </hr>
 
