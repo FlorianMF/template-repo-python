@@ -32,9 +32,9 @@ jobs:
 
       - name: Prepare env
         run : |
-          pip install virtualenv
-          virtualenv vEnv
-          source vEnv/bin/activate
+          # pip install virtualenv
+          # virtualenv vEnv
+          # source vEnv/bin/activate
           python -m pip install --upgrade pip
           python -m pip install "twine==3.2" setuptools wheel check-manifest
 
