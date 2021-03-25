@@ -10,32 +10,6 @@ on:
     branches: [main]
 
 jobs:
-  pkg-check:
-    # if: false # always skip job
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v2
-
-      - name: Set up Python 3.9
-        uses: actions/setup-python@v2
-        with:
-          python-version: 3.9
-
-      - name: Create package
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install setuptools wheel
-          # python setup.py check --metadata --strict
-          python setup.py sdist bdist_wheel
-
-      - name: Check package
-        run: |
-          pip install twine==1.13.0
-          twine check dist/*
-          python setup.py clean
-
   pkg-install:
     # if: false # always skip job
     runs-on: ${{ matrix.os }}
@@ -56,20 +30,37 @@ jobs:
         with:
           python-version: ${{ matrix.python-version }}
 
-      - name: Create package
-        run: |
-          python -m pip install --upgrade pip
-          python -m pip install setuptools wheel
-          # python setup.py check --metadata --strict
-          python setup.py sdist bdist_wheel
-
-      - name: Install package
-        run: |
+      - name: Prepare env
+        run : |
           pip install virtualenv
           virtualenv vEnv
           source vEnv/bin/activate
-          # pip install -r requirements/install.txt
-          pip install dist/*
-          cd .. & python -c "import PACKAGENAME as pkg ; print(pkg.__version__)"
-          deactivate
-          rm -rf vEnv
+          python -m pip install --upgrade pip
+          python -m pip install "twine==3.2" setuptools wheel check-manifest
+
+      - name: Create package
+        run: |
+          check-manifest
+          # python setup.py check --metadata --strict
+          python setup.py sdist bdist_wheel
+
+      - name: Check package
+        run: |
+          twine check dist/*
+          python setup.py clean
+
+      - name: Install | Uninstall package - archive
+        run: |
+          # install as archive
+          pip install dist/*.tar.gz
+          cd ..
+          python -c "import PACKAGENAME as pkg ; print(pkg.__version__)"
+          pip uninstall -y PACKAGENAME
+
+      - name: Install | Uninstall package - wheel
+        run: |
+          # install as wheel
+          pip install dist/*.whl
+          cd ..
+          python -c "import PACKAGENAME as pkg ; print(pkg.__version__)"
+          pip uninstall -y PACKAGENAME
