@@ -143,6 +143,9 @@ dmypy.json
 test-reports
 tests/test-reports/
 
-datasets
+datasets/
+Datasets/
+data/
+Data/
 
 *.msi

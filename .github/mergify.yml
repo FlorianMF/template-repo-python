@@ -1,0 +1,70 @@
+
+pull_request_rules:
+
+  - name: Automatic merge on approval
+    conditions:
+      - base=main
+      # number of review approvals
+      - "#approved-reviews-by>=3"
+      # no waiting or assigned review
+      - "#review-requested=0"
+      # no requested chnages from any reviewer
+      - "#changes-requested-reviews-by=0"
+      # this serves as ALL check has to pass as we have actually around 40 tests in total
+      - "#status-success>=50"
+      # this is patter-like, unfortunately serves as `any(...)` (note: redundant to the above)
+      #- "status-success~=^ci/circleci:"
+      # no conflict with main branch
+      - -conflict
+      # was not closed yet
+      - -closed
+      # filter out GH draft PRs
+      - -draft
+      # filter out work-in-progress PRs
+      - label!=work-in-progress
+      - title~=(?i)wip
+    actions:
+      # delete merged branch
+      delete_head_branch: {}
+      merge:
+        # https://doc.mergify.io/merge-action.html#strict-merge
+        # (on head branch) $ git merge --no-ff base
+        # (on head branch) # Wait for CI to go green
+        # (on head branch) # Squash all commits
+        # (on base branch) $ git merge --ff head
+        strict: true
+        method: squash
+      comment:
+        message: Great job! :D
+
+  - name: warn on conflicts
+    conditions:
+      - conflict
+      - -draft # filter out GH draft PRs
+      - -label="has conflicts"
+    actions:
+      comment:
+        message: This pull request is in conflict. Could you fix it @{{author}}? 🙏
+      label:
+        add: [ "has conflicts" ]
+
+  - name: add core reviewer
+    conditions:
+      # - -draft # filter out GH draft PRs
+      # number of review approvals
+      - "#approved-reviews-by<3"
+    actions:
+      request_reviews:
+        teams:
+          - core-contributors
+
+  - name: resolved conflicts
+    conditions:
+      - -conflict
+      - label="has conflicts"
+      - -draft # filter-out GH draft PRs
+      - -merged # not merged yet
+      - -closed
+    actions:
+      label:
+        remove: [ "has conflicts" ]

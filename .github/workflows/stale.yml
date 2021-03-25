@@ -9,6 +9,7 @@ on:
 
 jobs:
   stale:
+    if: false # always skip job
     runs-on: ubuntu-latest
 
     steps:

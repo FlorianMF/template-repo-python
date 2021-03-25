@@ -15,75 +15,27 @@
 from setuptools import setup, find_packages
 import versioneer
 import os
-import unittest
+from REPONAME import setup_tools
 import REPONAME
 
 PATH_ROOT = os.path.dirname(__file__)
 
 
-def get_test_suite():
-    """
-    Prepare a test-suite callable with:
-        python setup.py test
-    """
-    test_loader = unittest.TestLoader()
-    test_suite = test_loader.discover('tests', pattern='test_*.py')
-    return test_suite
-
-
-def load_requirements(
-        path_dir=PATH_ROOT,
-        file_name='install.txt',
-        comment_char='#'):
-    with open(os.path.join(path_dir, 'requirements', file_name), 'r') as file:
-        lines = [ln.strip() for ln in file.readlines()]
-    requirements = []
-    for ln in lines:
-        if ln.startswith("-r"):
-            requirements += load_requirements(path_dir, ln.split(" ")[1])
-        # filer all comments
-        if comment_char in ln:
-            ln = ln[:ln.index(comment_char)].strip()
-        # skip directly installed dependencies
-        if ln.startswith('http'):
-            continue
-        if ln:  # if requirement is not empty
-            requirements.append(ln)
-    return requirements
-
-
-def load_long_description():
-    url = os.path.join(
-        REPONAME.__homepage__,
-        'raw',
-        REPONAME.__version__,
-        'docs')
-    text = open('README.md', encoding='utf-8').read()
-    # replace relative repository path to absolute link to the release
-    text = text.replace('](docs', f']({url}')
-    # SVG images are not readable on PyPI, so replace them  with PNG
-    text = text.replace('.svg', '.png')
-    return text
-
-
-def read_file(file):
-    with open(file) as f:
-        content = f.read()
-    return content
-
-
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras
 # Define package extras. These are only installed if you specify them.
-# From remote, use like `pip install PACKAGENAME[dev, docs]`
+# From remote, use like `pip install pxd_torch[dev, docs]`
 # From local copy of repo, use like `pip install ".[dev, docs]"`
-extras = {
-    #     'docs':     load_requirements(file_name='docs.txt'),
-    #     'examples': load_requirements(file_name='examples.txt'),
-    #     'extra':    load_requirements(file_name='extra.txt'),
-    #     'test':     load_requirements(file_name='test.txt')
-}
-# extras['dev'] = extras['extra'] + extras['test']
-# extras['all'] = extras['dev'] + extras['examples'] + extras['docs']
+def _prepare_extras():
+    extras = {
+        'docs': setup_tools.load_requirements(file_name='docs.txt'),
+        'examples': setup_tools.load_requirements(file_name='examples.txt'),
+        'extra': setup_tools.load_requirements(file_name='extra.txt'),
+        'test': setup_tools.load_requirements(file_name='test.txt')
+        #     'loggers':     setup_tools.load_requirements(file_name='loggers.txt')
+    }
+    print(extras)
+    extras['dev'] = extras['extra'] + extras['test'] + extras['docs']
+    extras['all'] = extras['dev'] + extras['examples']
 
 
 # Configure the package build and distribution
@@ -105,7 +57,7 @@ setup(
     license=REPONAME.__license__,
 
     description='Program/Package to ...',  # Optional
-    long_description=read_file(
+    long_description=setup_tools.read_file(
         os.path.join(
             PATH_ROOT,
             "README.md")),
@@ -143,12 +95,18 @@ setup(
 
     platforms='any',
     setup_requires=[],
-    install_requires=load_requirements(),   # Optional
-    extras_require=extras,
-    python_requires='>=3.6*',
+    install_requires=setup_tools.load_requirements(file_name='install.txt'),   # Optional
+    extras_require=_prepare_extras(),
+    python_requires='>=3.6',
 
-    test_suite='setup.get_test_suite',
-    tests_require=["coverage"],
+    # test_suite='setup.get_test_suite',
+    # tests_require=["coverage"],
+
+    project_urls={
+        "Bug Tracker": "https://github.com/GITHUB_NAME/REPONAME/issues",
+        # "Documentation": "https://pxd_torch.rtfd.io/en/latest/",
+        "Source Code": "https://github.com/GITHUB_NAME/REPONAME",
+    },
 
     # Classifiers help users find your project by categorizing it.
     # For a list of valid classifiers, see https://pypi.org/classifiers/
@@ -169,8 +127,10 @@ setup(
         # Specify the Python versions you support here. In particular, ensure
         # that you indicate whether you support Python 2, Python 3 or both.
         'Programming Language :: Python :: 3',
+        'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: 3.7',
         'Programming Language :: Python :: 3.8',
+        'Programming Language :: Python :: 3.9',
     ],
 
     entry_points={

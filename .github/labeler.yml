@@ -22,7 +22,7 @@ REPONAME:
 
 # Add docs label to any change to doc files
 docs:
-- docs/*
+- docs/**/*
 
 # Add requirements label to any change to requirements files
 requirements:

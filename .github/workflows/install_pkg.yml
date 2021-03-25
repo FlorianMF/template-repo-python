@@ -11,6 +11,7 @@ on:
 
 jobs:
   pkg-check:
+    if: false # always skip job
     runs-on: ubuntu-latest
 
     steps:
