@@ -11,6 +11,7 @@ on:
 
 jobs:
   autopep8:
+    if: false  # always skip job
     name: Check code formatting with autopep8
     runs-on: ubuntu-latest
     steps:

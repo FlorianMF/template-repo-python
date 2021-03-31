@@ -473,4 +473,3 @@ Download Links
 ==============
 
 Here is a link :download:`This long long long long long long long long long long long long long long long download link should be blue, normal weight text with a leading icon, and should wrap white-spaces <_static/yi_jing_01_chien.jpg>`
-

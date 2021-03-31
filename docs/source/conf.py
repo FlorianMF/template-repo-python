@@ -12,25 +12,23 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 
-import sphinx.ext.doctest
-from sphinx import addnodes
-from docutils import nodes
+import glob
 import inspect
 import os
 import shutil
-import glob
 import sys
-import pypandoc
+
 import florianmf_sphinx_theme  # noqa: E402
+import pypandoc
+import sphinx.ext.doctest
+from docutils import nodes
+from sphinx import addnodes
 
 PATH_HERE = os.path.abspath(os.path.dirname(__file__))
 PATH_ROOT = os.path.dirname(os.path.dirname(PATH_HERE))
 sys.path.insert(0, os.path.abspath(PATH_ROOT))
 
-SPHINX_MOCK_REQUIREMENTS = int(
-    os.environ.get(
-        'SPHINX_MOCK_REQUIREMENTS',
-        True))
+SPHINX_MOCK_REQUIREMENTS = int(os.environ.get('SPHINX_MOCK_REQUIREMENTS', True))
 
 import REPONAME  # noqa: E402
 
@@ -54,33 +52,19 @@ skip = False
 # TODO adapt which lines should be maintained and which skipped
 # skip problematic parts
 for line in converted_readme:
-    if any([line.startswith(x) for x in [
-        '.. container::',
-        '   |PyPI|',
-        '.. |PyPI|',
-        '|PyPI|',
-        'Why another framework?',
-        '   logo',
-        '.. raw:: html'
-    ]
+    if any([
+        line.startswith(x) for x in
+        ['.. container::', '   |PyPI|', '.. |PyPI|', '|PyPI|', 'Why another framework?', '   logo', '.. raw:: html']
     ]):
         skip = True
-    elif any([line.startswith(x) for x in [
-        'What is ``PACKAGENAME``?',
-        'Installation',
-        'How to',
-        '.. figure:: _images/logos/PACKAGENAME_logo.png'
-    ]
+    elif any([
+        line.startswith(x) for x in
+        ['What is ``PACKAGENAME``?', 'Installation', 'How to', '.. figure:: _images/logos/PACKAGENAME_logo.png']
     ]):
         skip = False
 
     if not skip:
-        rst_file.append(
-            line.replace(
-                'docs/source/_images',
-                '_images').replace(
-                '.svg',
-                '.png'))
+        rst_file.append(line.replace('docs/source/_images', '_images').replace('.svg', '.png'))
 
 with open('getting_started.rst', 'w') as f:
     f.write('\n'.join(rst_file))
@@ -96,8 +80,7 @@ version = REPONAME.__version__
 # The full version, including alpha/beta/rc tags
 release = REPONAME.__version__
 
-IS_RELEASE = not (
-    '+' in version or 'dirty' in version or len(version.split('.')) > 3)
+IS_RELEASE = not ('+' in version or 'dirty' in version or len(version.split('.')) > 3)
 
 # Options for the linkcode extension
 # ----------------------------------
@@ -153,7 +136,6 @@ templates_path = ['_templates_stable'] if IS_RELEASE else ['_templates']
 nbsphinx_execute = 'never'
 nbsphinx_allow_errors = True
 nbsphinx_requirejs_path = ''
-
 
 # The suffix(es) of source filenames.
 # You can specify multiple suffix as a list of string:
@@ -250,22 +232,14 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc,
-     project
-     + '.tex',
-     project
-     + ' Documentation',
-     author,
-     'manual'),
+    (master_doc, project + '.tex', project + ' Documentation', author, 'manual'),
 ]
 
 # -- Options for manual page output ------------------------------------------
 
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
-man_pages = [
-    (master_doc, project, project + ' Documentation', [author], 1)
-]
+man_pages = [(master_doc, project, project + ' Documentation', [author], 1)]
 
 # -- Options for Texinfo output ----------------------------------------------
 
@@ -273,8 +247,10 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-    (master_doc, project, project + ' Documentation', author, project,
-     'One line description of project.', 'Miscellaneous'),
+    (
+        master_doc, project, project + ' Documentation', author, project, 'One line description of project.',
+        'Miscellaneous'
+    ),
 ]
 
 # -- Options for Epub output -------------------------------------------------
@@ -332,10 +308,9 @@ ENABLE_DOWNLOAD_LINK = True
 nbsphinx_kernel_name = 'python3'
 
 github_path = r'https://github.com/%s/%s/blob/master/notebooks/{{ env.doc2path(env.docname, base=None) }}' % (
-    github_user, github_repo)
-colab_path = github_path.replace(
-    'https://github.com',
-    'https://colab.research.google.com/github')
+    github_user, github_repo
+)
+colab_path = github_path.replace('https://github.com', 'https://colab.research.google.com/github')
 nbsphinx_execute = 'never'
 
 # copy all notebooks to local folder
@@ -422,17 +397,14 @@ MOCK_REQUIRE_PACKAGES = []
 if SPHINX_MOCK_REQUIREMENTS:
     # mock also base packages when we are on RTD since we don't install them
     # there
-    MOCK_REQUIRE_PACKAGES += package_list_from_file(
-        os.path.join(PATH_ROOT, 'requirements/install.txt'))
+    MOCK_REQUIRE_PACKAGES += package_list_from_file(os.path.join(PATH_ROOT, 'requirements/install.txt'))
     # MOCK_PACKAGES += package_list_from_file(os.path.join(PATH_ROOT, 'requirements/extra.txt'))
 
 # TODO: better parse from package since the import name and package name
 # may differ
-MOCK_MANUAL_PACKAGES = [
-    'numpy',
-    'dill'
-]
+MOCK_MANUAL_PACKAGES = ['numpy', 'dill']
 autodoc_mock_imports = MOCK_REQUIRE_PACKAGES + MOCK_MANUAL_PACKAGES
+
 # for mod_name in MOCK_REQUIRE_PACKAGES:
 #     sys.modules[mod_name] = mock.Mock()
 
@@ -440,6 +412,7 @@ autodoc_mock_imports = MOCK_REQUIRE_PACKAGES + MOCK_MANUAL_PACKAGES
 # Resolve function
 # This function is used to populate the (source) links in the API
 def linkcode_resolve(domain, info):
+
     def find_source():
         # try to find the file and line number, based on code from numpy:
         # https://github.com/numpy/numpy/blob/master/doc/source/conf.py#L286

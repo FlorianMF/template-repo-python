@@ -14,4 +14,3 @@ Symlink or subtree the ``florianmf_sphinx_theme`` repository into your documenta
 
     html_theme = "florianmf_sphinx_theme"
     html_theme_path = ["_themes", ]
-

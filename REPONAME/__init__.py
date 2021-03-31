@@ -5,6 +5,7 @@ import os
 __version__ = '0.0.1'
 
 from ._version import get_versions
+
 __version__ = get_versions()['version']
 del get_versions
 
@@ -31,7 +32,6 @@ Another title
 ------------------
 Description
 """
-
 
 _logger = __logging.getLogger("REPONAME")
 _logger.addHandler(__logging.StreamHandler())

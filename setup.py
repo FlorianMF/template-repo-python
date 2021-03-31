@@ -11,12 +11,14 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-# Always prefer setuptools over distutils
-from setuptools import setup, find_packages
-import versioneer
 import os
-from REPONAME import setup_tools
+
+# Always prefer setuptools over distutils
+from setuptools import find_packages, setup
+
 import REPONAME
+import versioneer
+from REPONAME import setup_tools
 
 PATH_ROOT = os.path.dirname(__file__)
 
@@ -51,16 +53,11 @@ setup(
     author_email=REPONAME.__author_email__,  # Optional
     maintainer=REPONAME.__maintainer_name__,  # Optional
     maintainer_email=REPONAME.__maintainer_name__,  # Optional
-
     url=REPONAME.__homepage__,  # Optional
     download_url='https://github.com/GITHUB_NAME/REPONAME',  # Optional
     license=REPONAME.__license__,
-
     description='Program/Package to ...',  # Optional
-    long_description=setup_tools.read_file(
-        os.path.join(
-            PATH_ROOT,
-            "README.md")),
+    long_description=setup_tools.read_file(os.path.join(PATH_ROOT, "README.md")),
     # Optional
     # long_description=load_long_description(),  # Optional
     long_description_content_type='text/markdown',  # Optional
@@ -69,12 +66,7 @@ setup(
     # project page. What does your project relate to?
     # A list of strings or a comma-separated string providing descriptive
     # meta-data.
-    keywords=[
-        'keyword1',
-        'keyword2',
-        'keyword3',
-        'keywordn'
-    ],  # Optional
+    keywords=['keyword1', 'keyword2', 'keyword3', 'keywordn'],  # Optional
 
     # You can just specify package directories manually here if your project is
     # simple. Or you can use find_packages().
@@ -84,25 +76,17 @@ setup(
     # called `my_module.py` to exist:
     #
     #   py_modules=["my_module"],
-    packages=find_packages(
-        exclude=[
-            'tests',
-            'tests/*',
-            'benchmarks',
-            'docs']),  # Required
+    packages=find_packages(exclude=['tests', 'tests/*', 'benchmarks', 'docs']),  # Required
     include_package_data=True,
     zip_safe=False,
-
     platforms='any',
     setup_requires=[],
-    install_requires=setup_tools.load_requirements(
-        file_name='install.txt'),   # Optional
+    install_requires=setup_tools.load_requirements(file_name='install.txt'),  # Optional
     extras_require=_prepare_extras(),
     python_requires='>=3.6',
 
     # test_suite='setup.get_test_suite',
     # tests_require=["coverage"],
-
     project_urls={
         "Bug Tracker": "https://github.com/GITHUB_NAME/REPONAME/issues",
         # "Documentation": "https://pxd_torch.rtfd.io/en/latest/",
@@ -133,9 +117,5 @@ setup(
         'Programming Language :: Python :: 3.8',
         'Programming Language :: Python :: 3.9',
     ],
-
-    entry_points={
-        'console_scripts': [
-            'script_name = folder.script:main'
-        ]}
+    entry_points={'console_scripts': ['script_name = folder.script:main']}
 )

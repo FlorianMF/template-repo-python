@@ -13,4 +13,3 @@ assignees: ''
 Tutorials are in `.ipynb` format, explaining each step of the process, really detailed, not production like.
 
 Examples are be in the `.py` format, more production oriented. Ready to be run with arguments from the command line and easy to integrate with wandb sweeps and alike.
-

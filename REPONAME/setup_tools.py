@@ -1,6 +1,7 @@
 import os
-from typing import List
 import unittest
+from typing import List
+
 import REPONAME
 from REPONAME import _PROJECT_ROOT
 
@@ -16,9 +17,9 @@ def get_test_suite():
 
 
 def load_requirements(
-        path_dir: str = os.path.join(_PROJECT_ROOT, 'requirements'),
-        file_name: str = 'install.txt',
-        comment_char: str = '#'
+    path_dir: str = os.path.join(_PROJECT_ROOT, 'requirements'),
+    file_name: str = 'install.txt',
+    comment_char: str = '#'
 ) -> List[str]:
     """Load requirements from a file
     """
@@ -41,11 +42,7 @@ def load_requirements(
 
 
 def load_long_description():
-    url = os.path.join(
-        pxd_torch.__homepage__,
-        'raw',
-        pxd_torch.__version__,
-        'docs')
+    url = os.path.join(pxd_torch.__homepage__, 'raw', pxd_torch.__version__, 'docs')
     text = open('README.md', encoding='utf-8').read()
     # replace relative repository path to absolute link to the release
     text = text.replace('](docs', f']({url}')

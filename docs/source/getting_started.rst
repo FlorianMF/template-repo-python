@@ -211,5 +211,3 @@ If you want to cite the framework feel free to use this:
 
 
 **You should modify everything in CAPS.**
-
-
