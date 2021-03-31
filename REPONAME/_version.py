@@ -67,7 +67,9 @@ def register_vcs_handler(vcs, method):  # decorator
     return decorate
 
 
-def run_command(commands, args, cwd=None, verbose=False, hide_stderr=False, env=None):
+def run_command(
+    commands, args, cwd=None, verbose=False, hide_stderr=False, env=None
+):
     """Call the given command(s)."""
     assert isinstance(commands, list)
     p = None
@@ -75,11 +77,13 @@ def run_command(commands, args, cwd=None, verbose=False, hide_stderr=False, env=
         try:
             dispcmd = str([c] + args)
             # remember shell=False, so use git.cmd on windows, not just git
-            p = subprocess.Popen([c] + args,
-                                 cwd=cwd,
-                                 env=env,
-                                 stdout=subprocess.PIPE,
-                                 stderr=(subprocess.PIPE if hide_stderr else None))
+            p = subprocess.Popen(
+                [c] + args,
+                cwd=cwd,
+                env=env,
+                stdout=subprocess.PIPE,
+                stderr=(subprocess.PIPE if hide_stderr else None)
+            )
             break
         except EnvironmentError:
             e = sys.exc_info()[1]
@@ -128,7 +132,10 @@ def versions_from_parentdir(parentdir_prefix, root, verbose):
             root = os.path.dirname(root)  # up a level
 
     if verbose:
-        print("Tried directories %s but none started with prefix %s" % (str(rootdirs), parentdir_prefix))
+        print(
+            "Tried directories %s but none started with prefix %s" %
+            (str(rootdirs), parentdir_prefix)
+        )
     raise NotThisMethod("rootdir doesn't start with parentdir_prefix")
 
 
@@ -235,7 +242,9 @@ def git_pieces_from_vcs(tag_prefix, root, verbose, run_command=run_command):
     if sys.platform == "win32":
         GITS = ["git.cmd", "git.exe"]
 
-    out, rc = run_command(GITS, ["rev-parse", "--git-dir"], cwd=root, hide_stderr=True)
+    out, rc = run_command(
+        GITS, ["rev-parse", "--git-dir"], cwd=root, hide_stderr=True
+    )
     if rc != 0:
         if verbose:
             print("Directory %s not under git control" % root)
@@ -244,8 +253,11 @@ def git_pieces_from_vcs(tag_prefix, root, verbose, run_command=run_command):
     # if there is a tag matching tag_prefix, this yields TAG-NUM-gHEX[-dirty]
     # if there isn't one, this yields HEX[-dirty] (no NUM)
     describe_out, rc = run_command(
-        GITS, ["describe", "--tags", "--dirty", "--always", "--long", "--match",
-               "%s*" % tag_prefix], cwd=root
+        GITS, [
+            "describe", "--tags", "--dirty", "--always", "--long", "--match",
+            "%s*" % tag_prefix
+        ],
+        cwd=root
     )
     # --long was added in git-1.5.5
     if describe_out is None:
@@ -278,7 +290,9 @@ def git_pieces_from_vcs(tag_prefix, root, verbose, run_command=run_command):
         mo = re.search(r'^(.+)-(\d+)-g([0-9a-f]+)$', git_describe)
         if not mo:
             # unparseable. Maybe git-describe is misbehaving?
-            pieces["error"] = ("unable to parse git-describe output: '%s'" % describe_out)
+            pieces["error"] = (
+                "unable to parse git-describe output: '%s'" % describe_out
+            )
             return pieces
 
         # tag
@@ -287,7 +301,10 @@ def git_pieces_from_vcs(tag_prefix, root, verbose, run_command=run_command):
             if verbose:
                 fmt = "tag '%s' doesn't start with prefix '%s'"
                 print(fmt % (full_tag, tag_prefix))
-            pieces["error"] = ("tag '%s' doesn't start with prefix '%s'" % (full_tag, tag_prefix))
+            pieces["error"] = (
+                "tag '%s' doesn't start with prefix '%s'" %
+                (full_tag, tag_prefix)
+            )
             return pieces
         pieces["closest-tag"] = full_tag[len(tag_prefix):]
 
@@ -300,11 +317,14 @@ def git_pieces_from_vcs(tag_prefix, root, verbose, run_command=run_command):
     else:
         # HEX: no tags
         pieces["closest-tag"] = None
-        count_out, rc = run_command(GITS, ["rev-list", "HEAD", "--count"], cwd=root)
+        count_out, rc = run_command(
+            GITS, ["rev-list", "HEAD", "--count"], cwd=root
+        )
         pieces["distance"] = int(count_out)  # total number of commits
 
     # commit date: see ISO-8601 comment in git_versions_from_keywords()
-    date = run_command(GITS, ["show", "-s", "--format=%ci", "HEAD"], cwd=root)[0].strip()
+    date = run_command(GITS, ["show", "-s", "--format=%ci", "HEAD"],
+                       cwd=root)[0].strip()
     pieces["date"] = date.strip().replace(" ", "T", 1).replace(" ", "", 1)
 
     return pieces
@@ -495,7 +515,9 @@ def get_versions():
     verbose = cfg.verbose
 
     try:
-        return git_versions_from_keywords(get_keywords(), cfg.tag_prefix, verbose)
+        return git_versions_from_keywords(
+            get_keywords(), cfg.tag_prefix, verbose
+        )
     except NotThisMethod:
         pass
 

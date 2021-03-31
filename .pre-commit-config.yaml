@@ -23,7 +23,7 @@ repos:
     rev: 'v0.31.0'
     hooks:
       - id: yapf
-        args: [ --in-place, --parallel ]
+        args: [--style, ./setup.cfg, --in-place, --parallel ]
 
   # - repo: https://github.com/pre-commit/mirrors-autopep8
   #   rev: 'v1.5.6'

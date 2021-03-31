@@ -19,7 +19,7 @@ ignore = [
 [tool.isort]
 known_first_party = [
     "examples",
-    "pxd_torch",
+    "REPONAME",
     "tests",
     "scripts"
 ]

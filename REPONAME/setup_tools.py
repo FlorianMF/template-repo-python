@@ -42,7 +42,9 @@ def load_requirements(
 
 
 def load_long_description():
-    url = os.path.join(pxd_torch.__homepage__, 'raw', pxd_torch.__version__, 'docs')
+    url = os.path.join(
+        REPONAME.__homepage__, 'raw', REPONAME.__version__, 'docs'
+    )
     text = open('README.md', encoding='utf-8').read()
     # replace relative repository path to absolute link to the release
     text = text.replace('](docs', f']({url}')

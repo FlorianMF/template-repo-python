@@ -10,7 +10,7 @@ on:
     branches: [main]
 
 jobs:
-  check-docs:
+  sphinx-check:
     if: false # always skip job
     runs-on: ubuntu-latest
 
@@ -24,7 +24,7 @@ jobs:
         # before custom requirement are resolved https://github.com/ammaraskar/sphinx-action/issues/16
         pre-build-command: "apt-get update -y && apt-get install -y git && pip install -r requirements/docs.txt"
         docs-folder: "docs/"
-        # repo-token: "${{ secrets.GITHUB_TOKEN }}"
+        repo-token: "${{ secrets.GITHUB_TOKEN }}"
 
   test-docs:
     if: false # always skip job
@@ -53,7 +53,7 @@ jobs:
         run: |
           # python -m pip install --upgrade --user pip
           pip install --requirement requirements/install.txt --upgrade-strategy only-if-needed
-          # pip install --requirement requirements/extra.txt
+          pip install --requirement requirements/extra.txt
           pip install --requirement requirements/docs.txt
           python --version ; pip --version ; pip list
         shell: bash
@@ -77,7 +77,7 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Set up Python 3.9
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v2
       with:
         python-version: 3.9
 
@@ -111,4 +111,4 @@ jobs:
         name: docs-results-${{ runner.os }}-${{ matrix.python-version }}-${{ matrix.requires }}
         path: docs/build/html/
       # Use always() to always run this step to publish test results when there are test failures
-      if: always()
+      if: success()

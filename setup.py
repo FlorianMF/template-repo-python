@@ -25,7 +25,7 @@ PATH_ROOT = os.path.dirname(__file__)
 
 # https://setuptools.readthedocs.io/en/latest/setuptools.html#declaring-extras
 # Define package extras. These are only installed if you specify them.
-# From remote, use like `pip install pxd_torch[dev, docs]`
+# From remote, use like `pip install REPONAME[dev, docs]`
 # From local copy of repo, use like `pip install ".[dev, docs]"`
 def _prepare_extras():
     extras = {
@@ -57,7 +57,9 @@ setup(
     download_url='https://github.com/GITHUB_NAME/REPONAME',  # Optional
     license=REPONAME.__license__,
     description='Program/Package to ...',  # Optional
-    long_description=setup_tools.read_file(os.path.join(PATH_ROOT, "README.md")),
+    long_description=setup_tools.read_file(
+        os.path.join(PATH_ROOT, "README.md")
+    ),
     # Optional
     # long_description=load_long_description(),  # Optional
     long_description_content_type='text/markdown',  # Optional
@@ -76,12 +78,14 @@ setup(
     # called `my_module.py` to exist:
     #
     #   py_modules=["my_module"],
-    packages=find_packages(exclude=['tests', 'tests/*', 'benchmarks', 'docs']),  # Required
+    packages=find_packages(exclude=['tests', 'tests/*', 'benchmarks', 'docs']
+                           ),  # Required
     include_package_data=True,
     zip_safe=False,
     platforms='any',
     setup_requires=[],
-    install_requires=setup_tools.load_requirements(file_name='install.txt'),  # Optional
+    install_requires=setup_tools.load_requirements(file_name='install.txt'
+                                                   ),  # Optional
     extras_require=_prepare_extras(),
     python_requires='>=3.6',
 
@@ -89,7 +93,7 @@ setup(
     # tests_require=["coverage"],
     project_urls={
         "Bug Tracker": "https://github.com/GITHUB_NAME/REPONAME/issues",
-        # "Documentation": "https://pxd_torch.rtfd.io/en/latest/",
+        # "Documentation": "https://REPONAME.rtfd.io/en/latest/",
         "Source Code": "https://github.com/GITHUB_NAME/REPONAME",
     },
 

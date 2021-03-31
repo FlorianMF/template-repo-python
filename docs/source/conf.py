@@ -28,7 +28,9 @@ PATH_HERE = os.path.abspath(os.path.dirname(__file__))
 PATH_ROOT = os.path.dirname(os.path.dirname(PATH_HERE))
 sys.path.insert(0, os.path.abspath(PATH_ROOT))
 
-SPHINX_MOCK_REQUIREMENTS = int(os.environ.get('SPHINX_MOCK_REQUIREMENTS', True))
+SPHINX_MOCK_REQUIREMENTS = int(
+    os.environ.get('SPHINX_MOCK_REQUIREMENTS', True)
+)
 
 import REPONAME  # noqa: E402
 
@@ -53,18 +55,25 @@ skip = False
 # skip problematic parts
 for line in converted_readme:
     if any([
-        line.startswith(x) for x in
-        ['.. container::', '   |PyPI|', '.. |PyPI|', '|PyPI|', 'Why another framework?', '   logo', '.. raw:: html']
+        line.startswith(x) for x in [
+            '.. container::', '   |PyPI|', '.. |PyPI|', '|PyPI|',
+            'Why another framework?', '   logo', '.. raw:: html'
+        ]
     ]):
         skip = True
     elif any([
-        line.startswith(x) for x in
-        ['What is ``PACKAGENAME``?', 'Installation', 'How to', '.. figure:: _images/logos/PACKAGENAME_logo.png']
+        line.startswith(x) for x in [
+            'What is ``PACKAGENAME``?', 'Installation', 'How to',
+            '.. figure:: _images/logos/PACKAGENAME_logo.png'
+        ]
     ]):
         skip = False
 
     if not skip:
-        rst_file.append(line.replace('docs/source/_images', '_images').replace('.svg', '.png'))
+        rst_file.append(
+            line.replace('docs/source/_images',
+                         '_images').replace('.svg', '.png')
+        )
 
 with open('getting_started.rst', 'w') as f:
     f.write('\n'.join(rst_file))
@@ -80,7 +89,9 @@ version = REPONAME.__version__
 # The full version, including alpha/beta/rc tags
 release = REPONAME.__version__
 
-IS_RELEASE = not ('+' in version or 'dirty' in version or len(version.split('.')) > 3)
+IS_RELEASE = not (
+    '+' in version or 'dirty' in version or len(version.split('.')) > 3
+)
 
 # Options for the linkcode extension
 # ----------------------------------
@@ -232,7 +243,10 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-    (master_doc, project + '.tex', project + ' Documentation', author, 'manual'),
+    (
+        master_doc, project + '.tex', project + ' Documentation', author,
+        'manual'
+    ),
 ]
 
 # -- Options for manual page output ------------------------------------------
@@ -248,8 +262,8 @@ man_pages = [(master_doc, project, project + ' Documentation', [author], 1)]
 #  dir menu entry, description, category)
 texinfo_documents = [
     (
-        master_doc, project, project + ' Documentation', author, project, 'One line description of project.',
-        'Miscellaneous'
+        master_doc, project, project + ' Documentation', author, project,
+        'One line description of project.', 'Miscellaneous'
     ),
 ]
 
@@ -310,7 +324,9 @@ nbsphinx_kernel_name = 'python3'
 github_path = r'https://github.com/%s/%s/blob/master/notebooks/{{ env.doc2path(env.docname, base=None) }}' % (
     github_user, github_repo
 )
-colab_path = github_path.replace('https://github.com', 'https://colab.research.google.com/github')
+colab_path = github_path.replace(
+    'https://github.com', 'https://colab.research.google.com/github'
+)
 nbsphinx_execute = 'never'
 
 # copy all notebooks to local folder
@@ -347,7 +363,9 @@ if ENABLE_DOWNLOAD_LINK:
                 </div>
                 </a>
             </div>
-    """ % (colab_path, r"{{ env.doc2path(env.docname, base=None) }}", github_path)
+    """ % (
+        colab_path, r"{{ env.doc2path(env.docname, base=None) }}", github_path
+    )
 
 else:
     nbsphinx_prolog = r"""
@@ -397,7 +415,9 @@ MOCK_REQUIRE_PACKAGES = []
 if SPHINX_MOCK_REQUIREMENTS:
     # mock also base packages when we are on RTD since we don't install them
     # there
-    MOCK_REQUIRE_PACKAGES += package_list_from_file(os.path.join(PATH_ROOT, 'requirements/install.txt'))
+    MOCK_REQUIRE_PACKAGES += package_list_from_file(
+        os.path.join(PATH_ROOT, 'requirements/install.txt')
+    )
     # MOCK_PACKAGES += package_list_from_file(os.path.join(PATH_ROOT, 'requirements/extra.txt'))
 
 # TODO: better parse from package since the import name and package name

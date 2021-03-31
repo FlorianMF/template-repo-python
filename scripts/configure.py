@@ -13,7 +13,12 @@ def read_file(file: str):
 
 
 def remove_script(new_path: str):
-    os.remove(os.path.join(new_path, os.path.basename(os.path.dirname(__file__)), os.path.basename(__file__)))
+    os.remove(
+        os.path.join(
+            new_path, os.path.basename(os.path.dirname(__file__)),
+            os.path.basename(__file__)
+        )
+    )
 
 
 def replace_file_content(file: str, original_content: str, new_content: str):
@@ -77,7 +82,9 @@ def set_repo_name(name: str):
         os.path.join(name, '_version.py'),
         os.path.join(name, 'test.py'),
         os.path.join('docs', 'source', '_templates', 'theme_variables.jinja'),
-        os.path.join('docs', 'source', '_templates_stable', 'theme_variables.jinja'),
+        os.path.join(
+            'docs', 'source', '_templates_stable', 'theme_variables.jinja'
+        ),
         os.path.join('docs', 'source', 'api.rst'),
         os.path.join('docs', 'source', 'demo.rst'),
         os.path.join('docs', 'source', 'lists_tables.rst'),
@@ -88,7 +95,9 @@ def set_repo_name(name: str):
     for filename in files:
         print(os.path.join(base_path, filename))
 
-        replace_file_content(os.path.join(base_path, filename), 'REPONAME', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'REPONAME', name
+        )
 
     return new_path
 
@@ -102,7 +111,9 @@ def set_package_name(name: str):
         'CONTRIBUTING.md',
         os.path.join('.github', 'labeler.yml'),
         os.path.join('docs', 'source', '_templates', 'theme_variables.jinja'),
-        os.path.join('docs', 'source', '_templates_stable', 'theme_variables.jinja'),
+        os.path.join(
+            'docs', 'source', '_templates_stable', 'theme_variables.jinja'
+        ),
         os.path.join('.github', 'ISSUE_TEMPLATE', 'bug_report.md'),
         os.path.join('docs', 'source', 'conf.py'),
     ]
@@ -111,7 +122,9 @@ def set_package_name(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'PACKAGENAME', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'PACKAGENAME', name
+        )
 
 
 def set_github_name(name: str):
@@ -128,7 +141,9 @@ def set_github_name(name: str):
         os.path.join('.github', 'workflows', 'label.yml'),
         os.path.join('.github', 'workflows', 'team_labeler.yml'),
         os.path.join('docs', 'source', '_templates', 'theme_variables.jinja'),
-        os.path.join('docs', 'source', '_templates_stable', 'theme_variables.jinja'),
+        os.path.join(
+            'docs', 'source', '_templates_stable', 'theme_variables.jinja'
+        ),
         os.path.join('.github', 'ISSUE_TEMPLATE', 'bug_report.md'),
     ]
 
@@ -136,7 +151,9 @@ def set_github_name(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'GITHUB_NAME', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'GITHUB_NAME', name
+        )
 
 
 def set_author_name(name: str):
@@ -149,7 +166,9 @@ def set_author_name(name: str):
         'setup.cfg',
         'setup.py',
         os.path.join('docs', 'source', '_templates', 'theme_variables.jinja'),
-        os.path.join('docs', 'source', '_templates_stable', 'theme_variables.jinja'),
+        os.path.join(
+            'docs', 'source', '_templates_stable', 'theme_variables.jinja'
+        ),
         'CONTRIBUTING.md',
     ]
 
@@ -157,7 +176,9 @@ def set_author_name(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'AUTHOR_NAME', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'AUTHOR_NAME', name
+        )
 
 
 def set_author_email(name: str):
@@ -170,7 +191,9 @@ def set_author_email(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'AUTHOR_EMAIL', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'AUTHOR_EMAIL', name
+        )
 
 
 def set_maintainer_name(name: str):
@@ -182,7 +205,9 @@ def set_maintainer_name(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'MAINTAINER_NAME', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'MAINTAINER_NAME', name
+        )
 
 
 def set_maintainer_email(name: str):
@@ -194,12 +219,16 @@ def set_maintainer_email(name: str):
 
     for filename in files:
         print(os.path.join(base_path, filename))
-        replace_file_content(os.path.join(base_path, filename), 'MAINTAINER_EMAIL', name)
+        replace_file_content(
+            os.path.join(base_path, filename), 'MAINTAINER_EMAIL', name
+        )
 
 
 def configure_coverage_upload(enable: bool):
     base_path = get_root_path()
-    filename = os.path.join(base_path, '.github', 'workflows', 'unittests_linux.yml')
+    filename = os.path.join(
+        base_path, '.github', 'workflows', 'unittests_linux.yml'
+    )
     start_str = '#COVERAGE_UPLOAD_CONFIG'
 
     if enable:
@@ -224,39 +253,52 @@ def successfull(*args, **kwargs):
 
 def parse_args():
     parser = argparse.ArgumentParser()
-    parser.add_argument('--repo_name', type=str, help='The new folder name for the repository', default=None)
     parser.add_argument(
-        '--package_name', type=str, help='The new name of the python package included in this directory', default=None
+        '--repo_name',
+        type=str,
+        help='The new folder name for the repository',
+        default=None
+    )
+    parser.add_argument(
+        '--package_name',
+        type=str,
+        help='The new name of the python package included in this directory',
+        default=None
     )
 
     parser.add_argument(
         '--github_name',
         type=str,
-        help='The name of the github accont of the python package included in this directory',
+        help=
+        'The name of the github accont of the python package included in this directory',
         default=None
     )
     parser.add_argument(
         '--author_name',
         type=str,
-        help='The name of the author of the python package included in this directory',
+        help=
+        'The name of the author of the python package included in this directory',
         default=None
     )
     parser.add_argument(
         '--author_email',
         type=str,
-        help='The email address of the author of the python package included in this directory',
+        help=
+        'The email address of the author of the python package included in this directory',
         default=None
     )
     parser.add_argument(
         '--maintainer_name',
         type=str,
-        help='The name of the maintainer of the python package included in this directory',
+        help=
+        'The name of the maintainer of the python package included in this directory',
         default=None
     )
     parser.add_argument(
         '--maintainer_email',
         type=str,
-        help='The email address of the maintainer of the python package included in this directory',
+        help=
+        'The email address of the maintainer of the python package included in this directory',
         default=None
     )
 
@@ -282,7 +324,9 @@ def get_functions(parser_args):
     if parser_args.package_name is None:
         package_name_fn = successfull
     else:
-        package_name_fn = partial(set_package_name, name=parser_args.package_name)
+        package_name_fn = partial(
+            set_package_name, name=parser_args.package_name
+        )
 
     if parser_args.github_name is None:
         github_name_fn = successfull
@@ -297,19 +341,27 @@ def get_functions(parser_args):
     if parser_args.author_email is None:
         author_email_fn = successfull
     else:
-        author_email_fn = partial(set_author_email, name=parser_args.author_email)
+        author_email_fn = partial(
+            set_author_email, name=parser_args.author_email
+        )
 
     if parser_args.maintainer_name is None:
         maintainer_name_fn = successfull
     else:
-        maintainer_name_fn = partial(set_maintainer_name, name=parser_args.maintainer_name)
+        maintainer_name_fn = partial(
+            set_maintainer_name, name=parser_args.maintainer_name
+        )
 
     if parser_args.maintainer_email is None:
         maintainer_email_fn = successfull
     else:
-        maintainer_email_fn = partial(set_maintainer_email, name=parser_args.maintainer_email)
+        maintainer_email_fn = partial(
+            set_maintainer_email, name=parser_args.maintainer_email
+        )
 
-    functions['coverage_upload'] = partial(configure_coverage_upload, enable=parser_args.enable_coverage_upload)
+    functions['coverage_upload'] = partial(
+        configure_coverage_upload, enable=parser_args.enable_coverage_upload
+    )
 
     functions['package_name'] = package_name_fn
     functions['repo_name'] = repo_name_fn
