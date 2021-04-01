@@ -35,9 +35,9 @@ def _prepare_extras():
         'test': setup_tools.load_requirements(file_name='test.txt')
         #     'loggers':     setup_tools.load_requirements(file_name='loggers.txt')
     }
-    print(extras)
     extras['dev'] = extras['extra'] + extras['test'] + extras['docs']
     extras['all'] = extras['dev'] + extras['examples']
+    return extras
 
 
 # Configure the package build and distribution
