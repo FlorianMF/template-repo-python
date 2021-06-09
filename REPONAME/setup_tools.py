@@ -25,17 +25,23 @@ def load_requirements(
     """
     with open(os.path.join(path_dir, file_name), 'r') as file:
         lines = [ln.strip() for ln in file.readlines()]
-    requirements = []
+    requirements: List[str] = []
     for ln in lines:
         # import linked requirements file
         if ln.startswith("-r"):
             requirements += load_requirements(path_dir, ln.split(" ")[1])
         # filer all comments
-        if comment_char in ln:
-            ln = ln[:ln.index(comment_char)].strip()
-        # skip directly installed dependencies
-        if ln.startswith('http'):
+        if ln.startswith(comment_char):
             continue
+        if comment_char in ln:
+            split = ln.split(comment_char)
+            ln = split.pop(0)
+            for elem in split:
+                if elem.startswith('egg'):
+                    ln += comment_char + elem
+                else:
+                    break
+            ln = ln.strip()
         if ln:  # if requirement is not empty
             requirements.append(ln)
     return requirements

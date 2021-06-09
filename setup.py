@@ -50,11 +50,10 @@ setup(
     version=versioneer.get_version(),  # Required
     cmdclass=versioneer.get_cmdclass(),  # Optional
     author=REPONAME.__author_name__,  # Optional
-    author_email=REPONAME.__author_email__,  # Optional
-    maintainer=REPONAME.__maintainer_name__,  # Optional
-    maintainer_email=REPONAME.__maintainer_name__,  # Optional
+    # author_email=REPONAME.__author_email__,  # Optional
+    # maintainer_email=REPONAME.__maintainer_name__,  # Optional
     url=REPONAME.__homepage__,  # Optional
-    download_url='https://github.com/GITHUB_NAME/REPONAME',  # Optional
+    download_url=REPONAME.__download_url__,  # Optional
     license=REPONAME.__license__,
     description='Program/Package to ...',  # Optional
     long_description=setup_tools.read_file(
