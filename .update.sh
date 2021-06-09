@@ -3,13 +3,16 @@
 version=$1
 
 git commit -am "release v$version"
-git tag $version -m "test_tube v$version"
+git tag $version -m "v$version"
 git push --tags origin main
 
-# push to pypi
+# build package
 rm -rf ./dist/*
-python3 setup.py sdist
-twine upload dist/*
+python -m pip install --user --upgrade setuptools wheel
+python setup.py sdist bdist_wheel
+
+# push to pypi
+# twine upload dist/*
 
 # to update docs
 # cd to root dir
