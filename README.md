@@ -1,6 +1,6 @@
 <div align="center">
 
-![Logo](docs/source/_images/logos/PACKAGENAME_logo.svg)
+![Logo](docs/source/_images/logos/PACKAGE_NAME_logo.svg)
 
 # template-repo-python
 
@@ -9,7 +9,7 @@
 <p align="center">
   <a href="#key-features">Key Features</a> •
   <a href="#how-to-use">How To Use</a> •
-  <a href="https://PACKAGENAME.readthedocs.io/en/stable/">Docs</a> •
+  <a href="https://PACKAGE_NAME.readthedocs.io/en/stable/">Docs</a> •
   <a href="#examples">Examples</a> •
   <!-- <a href="#community">Community</a> • -->
   <a href="#licence">Licence</a>
@@ -17,30 +17,30 @@
 
 **Change all occurrences of FlorianMF and template-repo-python. They are used set here only to check that the code works.**
 
-[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/PACKAGENAME)](https://pypi.org/project/PACKAGENAME)
-[![PyPI Package Version](https://badge.fury.io/py/PACKAGENAME.svg)](https://badge.fury.io/py/PACKAGENAME)
-[![PyPI Version](https://img.shields.io/pypi/v/PACKAGENAME)](https://pypi.org/project/PACKAGENAME)
-[![PyPI Status](https://pepy.tech/badge/PACKAGENAME)](https://pepy.tech/project/PACKAGENAME)
-[![PyPI - Downloads](https://img.shields.io/pypi/dm/PACKAGENAME)](https://pypi.org/project/PACKAGENAME)
+[![PyPI - Python Version](https://img.shields.io/pypi/pyversions/PACKAGE_NAME)](https://pypi.org/project/PACKAGE_NAME)
+[![PyPI Package Version](https://badge.fury.io/py/PACKAGE_NAME.svg)](https://badge.fury.io/py/PACKAGE_NAME)
+[![PyPI Version](https://img.shields.io/pypi/v/PACKAGE_NAME)](https://pypi.org/project/PACKAGE_NAME)
+[![PyPI Status](https://pepy.tech/badge/PACKAGE_NAME)](https://pepy.tech/project/PACKAGE_NAME)
+[![PyPI - Downloads](https://img.shields.io/pypi/dm/PACKAGE_NAME)](https://pypi.org/project/PACKAGE_NAME)
 
 [![DockerHub](https://img.shields.io/docker/pulls/DOCKER_AUTHOR_NAME/DOCKER_REPONAME.svg)](https://hub.docker.com/r/DOCKER_AUTHOR_NAME/DOCKER_REPONAME)
 
-[![codecov](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME/branch/main/graph/badge.svg)](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME)
-[![Coverage](https://img.shields.io/codecov/c/github/AUTHOR_NAME/PACKAGENAME)](https://codecov.io/gh/AUTHOR_NAME/PACKAGENAME)
+[![codecov](https://codecov.io/gh/AUTHOR_NAME/PACKAGE_NAME/branch/main/graph/badge.svg)](https://codecov.io/gh/AUTHOR_NAME/PACKAGE_NAME)
+[![Coverage](https://img.shields.io/codecov/c/github/AUTHOR_NAME/PACKAGE_NAME)](https://codecov.io/gh/AUTHOR_NAME/PACKAGE_NAME)
 
-[![Status](https://img.shields.io/pypi/status/PACKAGENAME)](https://pypi.org/project/template-repo-python)
+[![Status](https://img.shields.io/pypi/status/PACKAGE_NAME)](https://pypi.org/project/template-repo-python)
 ![Docs](https://github.com/FlorianMF/template-repo-python/workflows/Docs%20Check/badge.svg)
-[![ReadTheDocs](https://readthedocs.org/projects/PACKAGENAME/badge/?version=stable)](https://PACKAGENAME.readthedocs.io/en/stable/)
-[![Slack](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://join.slack.com/t/PACKAGENAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A)
+[![ReadTheDocs](https://readthedocs.org/projects/PACKAGE_NAME/badge/?version=stable)](https://PACKAGE_NAME.readthedocs.io/en/stable/)
+[![Slack](https://img.shields.io/badge/slack-chat-green.svg?logo=slack)](https://join.slack.com/t/PACKAGE_NAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A)
 [![Discourse status](https://img.shields.io/discourse/status?server=https%3A%2F%2Fforums.AUTHOR_NAME.ai)](https://forums.AUTHOR_NAME.ai/)
 [![License](https://img.shields.io/badge/License-LICENSE-blue.svg)](https://github.com/FlorianMF/template-repo-python/blob/main/LICENSE)
 [![Next Release](https://img.shields.io/badge/Next%20Release-Jan%202021-red.svg)](https://shields.io/)
 
-[![Implementation](https://img.shields.io/pypi/implementation/PACKAGENAME)](https://pypi.org/project/PACKAGENAME)
+[![Implementation](https://img.shields.io/pypi/implementation/PACKAGE_NAME)](https://pypi.org/project/PACKAGE_NAME)
 
-[![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/AUTHOR_NAME/PACKAGENAME)](https://github.com/FlorianMF/template-repo-python/network/alerts)
+[![Vulnerabilities](https://img.shields.io/snyk/vulnerabilities/github/AUTHOR_NAME/PACKAGE_NAME)](https://github.com/FlorianMF/template-repo-python/network/alerts)
 
-[![Version tag](https://img.shields.io/github/v/tag/AUTHOR_NAME/PACKAGENAME)](https://github.com/FlorianMF/template-repo-python/releases)
+[![Version tag](https://img.shields.io/github/v/tag/AUTHOR_NAME/PACKAGE_NAME)](https://github.com/FlorianMF/template-repo-python/releases)
 
 | Python Version | Platform | Unittests | NotebookTests |
 ---              | ---      |  ---      | ---           |
@@ -73,7 +73,7 @@ It's features include (but are not limited to):
 The script [`scripts/configure`](scripts/configure.py) allows to replace the following in all files defined in the script:
 
 * `REPONAME` : The name of your Git repository
-* `PACKAGENAME` : The name of your package
+* `PACKAGE_NAME` : The name of your package
 * `GITHUB_NAME` : The name of GitHub account under which the repo is hosted
 * `AUTHOR_NAME` : The name of author of the repo/package
 * `AUTHOR_EMAIL` : The email of author of the repo/package
@@ -117,13 +117,13 @@ pip install -r requirements/install.txt
 Simple installation from PyPI
 
 ```bash
-pip install PACKAGENAME
+pip install PACKAGE_NAME
 ```
 
 From Conda
 
 ```bash
-conda install PACKAGENAME -c conda-forge
+conda install PACKAGE_NAME -c conda-forge
 ```
 
 ### Step 1: ...
@@ -162,11 +162,11 @@ Python examples
 
 If you have any questions please:
 
-1. [Read the docs](https://PACKAGENAME.rtfd.io/en/latest/).
-1. [Look it up in our forum (or add a new question)](https://forums.PACKAGENAME.ai/)
+1. [Read the docs](https://PACKAGE_NAME.rtfd.io/en/latest/).
+1. [Look it up in our forum (or add a new question)](https://forums.PACKAGE_NAME.ai/)
 1. [Search through the issues](https://github.com/GITHUB_NAME/REPONAME/issues?utf8=%E2%9C%93&q=my++question).
-1. [Join our slack](https://join.slack.com/t/PACKAGENAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A).
-1. [Ask on stackoverflow](https://stackoverflow.com/questions/ask?guided=false) with the tag PACKAGENAME.
+1. [Join our slack](https://join.slack.com/t/PACKAGE_NAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A).
+1. [Ask on stackoverflow](https://stackoverflow.com/questions/ask?guided=false) with the tag PACKAGE_NAME.
 
 ---
 
@@ -201,7 +201,7 @@ To customize this repo, you need to have a look at the following chapters.
 You might want to customize your package-name.
 
 To do this, you simply have to rename the `REPONAME` directory to whatever you want.
-> Make sure, to also change the `PACKAGENAME` in the [`setup.py`](setup.py#L96), or you won't be able to install your package anymore!
+> Make sure, to also change the `PACKAGE_NAME` in the [`setup.py`](setup.py#L96), or you won't be able to install your package anymore!
 
 ### Main/Master branch
 
@@ -215,7 +215,7 @@ The minimal setup looks like this:
 
 ```python
 setup(
-    name='PACKAGENAME',
+    name='PACKAGE_NAME',
     version=_version,
     packages=find_packages(),
     url='https://github.com/GITHUB_NAME/REPONAME',

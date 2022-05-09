@@ -63,8 +63,8 @@ for line in converted_readme:
         skip = True
     elif any([
         line.startswith(x) for x in [
-            'What is ``PACKAGENAME``?', 'Installation', 'How to',
-            '.. figure:: _images/logos/PACKAGENAME_logo.png'
+            'What is ``PACKAGE_NAME``?', 'Installation', 'How to',
+            '.. figure:: _images/logos/PACKAGE_NAME_logo.png'
         ]
     ]):
         skip = False
@@ -80,7 +80,7 @@ with open('getting_started.rst', 'w') as f:
 
 # -- Project information -----------------------------------------------------
 
-project = 'PACKAGENAME'
+project = 'PACKAGE_NAME'
 copyright = REPONAME.__copyright__
 author = REPONAME.__author_name__
 
@@ -179,7 +179,7 @@ exclude_patterns = [
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
-# pygments_style = None # as in PACKAGENAME
+# pygments_style = None # as in PACKAGE_NAME
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -201,7 +201,7 @@ html_theme_options = {
     'logo_only': False,
 }
 
-html_logo = '_images/logos/PACKAGENAME_logo.svg'
+html_logo = '_images/logos/PACKAGE_NAME_logo.svg'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -442,8 +442,8 @@ def linkcode_resolve(domain, info):
         fname = inspect.getsourcefile(obj)
         # https://github.com/rtfd/readthedocs.org/issues/5735
         if any([s in fname for s in ('readthedocs', 'rtfd', 'checkouts')]):
-            # /home/docs/checkouts/readthedocs.org/user_builds/PACKAGENAME/checkouts/
-            #  devel/PACKAGENAME/utilities/cls_experiment.py#L26-L176
+            # /home/docs/checkouts/readthedocs.org/user_builds/PACKAGE_NAME/checkouts/
+            #  devel/PACKAGE_NAME/utilities/cls_experiment.py#L26-L176
             path_top = os.path.abspath(os.path.join('..', '..', '..'))
             fname = os.path.relpath(fname, start=path_top)
         else:

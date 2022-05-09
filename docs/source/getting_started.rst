@@ -44,7 +44,7 @@ Simple installation from PyPI
 
 
 
-   pip install PACKAGENAME
+   pip install PACKAGE_NAME
 
 
 
@@ -56,7 +56,7 @@ From Conda
 
 
 
-   conda install PACKAGENAME -c conda-forge
+   conda install PACKAGE_NAME -c conda-forge
 
 
 
@@ -144,11 +144,11 @@ If you have any questions please:
 
 
 
-1. `Read the docs <https://PACKAGENAME.rtfd.io/en/latest/>`__.
+1. `Read the docs <https://PACKAGE_NAME.rtfd.io/en/latest/>`__.
 
 2. `Look it up in our forum (or add a new
 
-   question) <https://forums.PACKAGENAME.ai/>`__
+   question) <https://forums.PACKAGE_NAME.ai/>`__
 
 3. `Search through the
 
@@ -156,13 +156,13 @@ If you have any questions please:
 
 4. `Join our
 
-   slack <https://join.slack.com/t/PACKAGENAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A>`__.
+   slack <https://join.slack.com/t/PACKAGE_NAME/shared_invite/zt-f6bl2l0l-JYMK3tbAgAmGRrlNr00f1A>`__.
 
 5. `Ask on
 
    stackoverflow <https://stackoverflow.com/questions/ask?guided=false>`__
 
-   with the tag PACKAGENAME.
+   with the tag PACKAGE_NAME.
 
 
 

@@ -1,4 +1,4 @@
-PACKAGENAME Documentation
+PACKAGE_NAME Documentation
 ===============================
 
 .. toctree::

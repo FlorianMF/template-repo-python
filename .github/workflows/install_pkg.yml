@@ -55,7 +55,7 @@ jobs:
           pip install dist/*.tar.gz
           cd ..
           python -c "import REPONAME as pkg ; print(pkg.__version__)"
-          pip uninstall -y PACKAGENAME
+          pip uninstall -y PACKAGE_NAME
 
       - name: Install | Uninstall package - wheel
         run: |
@@ -63,4 +63,4 @@ jobs:
           pip install dist/*.whl
           cd ..
           python -c "import REPONAME as pkg ; print(pkg.__version__)"
-          pip uninstall -y PACKAGENAME
+          pip uninstall -y PACKAGE_NAME

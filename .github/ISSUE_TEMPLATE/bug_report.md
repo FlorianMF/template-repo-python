@@ -46,9 +46,9 @@ wget https://raw.githubusercontent.com/GITHUB_NAME/REPONAME/main/tests/collect_e
 python collect_env_details.py
 ```
 
-- PACKAGENAME Version (e.g., 1.0.2):
+- PACKAGE_NAME Version (e.g., 1.0.2):
 - OS (e.g., Linux):
-- How you installed PACKAGENAME (`conda`, `pip`, source):
+- How you installed PACKAGE_NAME (`conda`, `pip`, source):
 - Build command you used (if compiling from source):
 - Python version:
 - Any other relevant information:

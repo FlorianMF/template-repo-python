@@ -46,7 +46,7 @@ def _prepare_extras():
 # To record the files created use:
 #   python setup.py install --record files.txt
 setup(
-    name='PACKAGENAME',  # Required
+    name='PACKAGE_NAME',  # Required
     version=versioneer.get_version(),  # Required
     cmdclass=versioneer.get_cmdclass(),  # Optional
     author=REPONAME.__author_name__,  # Optional

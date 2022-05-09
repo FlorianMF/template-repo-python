@@ -123,7 +123,7 @@ def set_package_name(name: str):
     for filename in files:
         print(os.path.join(base_path, filename))
         replace_file_content(
-            os.path.join(base_path, filename), 'PACKAGENAME', name
+            os.path.join(base_path, filename), 'PACKAGE_NAME', name
         )
 
 

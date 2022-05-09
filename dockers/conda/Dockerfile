@@ -30,7 +30,7 @@ RUN useradd --create-home --shell /bin/bash containeruser
 
 USER containeruser
 WORKDIR /home/containeruser
-ENV CONDA_ENV=PACKAGENAME
+ENV CONDA_ENV=PACKAGE_NAME
 
 # install conda and python
 RUN curl -o ~/miniconda.sh https://repo.anaconda.com/miniconda/Miniconda3-${CONDA_VERSION}-Linux-x86_64.sh  && \
@@ -62,6 +62,6 @@ RUN git clone https://github.com/GITHUB_NAME/REPONAME.git --single-branch --bran
 
 RUN python --version && \
     pip --version && \
-    python -c "import PACKAGENAME as pkg; print(pkg.__version__)"
+    python -c "import PACKAGE_NAME as pkg; print(pkg.__version__)"
 
 CMD ["/bin/bash"]
