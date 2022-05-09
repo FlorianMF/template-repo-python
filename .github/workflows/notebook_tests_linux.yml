@@ -40,4 +40,4 @@ jobs:
 
     - name: Run Notebooks
       run: |
-        "treon --threads=1 # with more threads this requires to much RAM
+        treon --threads=1 # with more threads this requires to much RAM
