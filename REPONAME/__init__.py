@@ -8,6 +8,7 @@ from ._version import get_versions
 __version__ = get_versions()['version']
 del get_versions
 
+__package_name__ = 'PACKAGE_NAME'
 __author_name__ = 'AUTHOR_NAME'
 __author_email__ = 'AUTHOR_EMAIL'
 # __maintainer_name__ = 'MAINTAINER_NAME'
@@ -32,7 +33,7 @@ Another title
 Description
 """
 
-_logger = __logging.getLogger("REPONAME")
+_logger = __logging.getLogger(__package_name__)
 _logger.addHandler(__logging.StreamHandler())
 _logger.setLevel(__logging.INFO)
 
